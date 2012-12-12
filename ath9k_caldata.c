@@ -6,11 +6,11 @@
 #include "ath9k_caldata.h"
 
 int main(int argc, char** argv) {
-	char* in_caldata_name;
-	char* out_caldata_name;
-	int cmd_regd;
+	char* in_caldata_name = NULL;
+	char* out_caldata_name = NULL;
+	int cmd_regd = 0;
 	int caldata_regd;
-	int cmd_caps;
+	int cmd_caps = 0;
 	int caldata_caps;
 
 	//Check arguments.
@@ -90,10 +90,21 @@ int main(int argc, char** argv) {
 		}
 	}
 
+	if(in_caldata_name == NULL) {
+		arg_err = 1;
+	}
+
+	if(out_caldata_name != NULL && !cmd_regd && !cmd_caps) {
+		printf("[ERROR] You must provide something to overwrite.\n");
+		printf("\t-r <regdomain>\n");
+		printf("\t-c <capabilities>\n");
+		arg_err = 1;
+	}
+
 	//Check arguments
 	if (arg_err) {
 		//Invalid arguments
-		printf("Usage: %s\n", argv[0]);
+		printf("Usage: %s -i <input_caldata> [-o <output_caldata> {-r <regdomain> | -c <capabilities>}]\n", argv[0]);
 		return ERROR_ARGS;
 	}
 	else {
