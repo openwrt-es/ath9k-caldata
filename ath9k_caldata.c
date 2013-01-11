@@ -261,6 +261,7 @@ int ath9k_caldata_offset(uint8_t* caldata, int length, int* offset) {
 		if(!memcmp(&caldata[i], &caldata_magic, 4)) {
 			found = 1;
 			*offset = i;
+			break;
 		}
 	}
 
