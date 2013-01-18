@@ -256,9 +256,8 @@ int main(int argc, char** argv) {
 int ath9k_caldata_offset(uint8_t* caldata, int length, int* offset) {
 	int i, found = 0;
 
-	uint8_t caldata_magic[4] = {0xa5, 0x5a, 0, 0};
-	for(i = 0; i < length && (length - i) >= 4; i++) {
-		if(!memcmp(&caldata[i], &caldata_magic, 4)) {
+	for(i = 0; i < length && (length - i) >= ATH9K_CALDATA_SIZE; i++) {
+		if(!memcmp(&caldata[i], &caldata_magic, ATH9K_CALDATA_SIZE)) {
 			found = 1;
 			*offset = i;
 			break;

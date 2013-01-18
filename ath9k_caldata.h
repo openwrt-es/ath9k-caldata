@@ -29,6 +29,9 @@
 #define ATH9K_EEPROM_SIZE	2048
 #define ATH9K_EEPROM_MAGIC	0xA55A
 
+#define ATH9K_CALDATA_SIZE	6
+uint8_t caldata_magic[ATH9K_CALDATA_SIZE] = {0xa5, 0x5a, 0, 0, 0, 0x03};
+
 #define ATH9K_MAGC_OFF	0
 #define ATH9K_CLEN_OFF	(0x200 >> 1)
 #define ATH9K_CSUM_OFF	(0x202 >> 1)
